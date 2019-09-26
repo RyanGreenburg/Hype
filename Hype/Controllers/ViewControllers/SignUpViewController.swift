@@ -10,16 +10,19 @@ import UIKit
  // MARK: - Day 3 Changes
 class SignUpViewController: UIViewController {
     
+    var image: UIImage?
+    
     @IBOutlet weak var usernameTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchUser()
+        
     }
     
     @IBAction func signUpButtonTapped(_ sender: Any) {
         guard let username = usernameTextField.text, !username.isEmpty else { return }
-        UserController.shared.createUserWith(username) { (success) in
+        UserController.shared.createUserWith(username, profilePhoto: image) { (success) in
             if success {
                 self.presentHypeListVC()
             }
@@ -41,5 +44,19 @@ class SignUpViewController: UIViewController {
             viewController.modalPresentationStyle = .fullScreen
             self.present(viewController, animated: true)
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "photoPicerVC" {
+            let destinationVC = segue.destination as? PhotoPickerViewController
+            destinationVC?.delegate = self
+        }
+    }
+}
+
+// MARK: - Day 4 Changes
+extension SignUpViewController: PhotoSelectorDelegate {
+    func photoPickerSelected(image: UIImage) {
+        self.image = image
     }
 }

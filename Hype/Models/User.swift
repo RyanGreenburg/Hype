@@ -6,7 +6,7 @@
 //  Copyright © 2019 RYAN GREENBURG. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CloudKit
 // MARK: - Day 3 Changes
 
@@ -15,6 +15,7 @@ struct UserStrings {
     fileprivate static let usernameKey = "username"
     fileprivate static let bioKey = "bio"
     static let appleUserRefKey = "appleUserRef"
+    fileprivate static let photoAssetKey = "photoAsset"
 }
 
 class User {
@@ -22,12 +23,37 @@ class User {
     var bio: String
     var recordID: CKRecord.ID
     var appleUserRef: CKRecord.Reference
+    var profilePhoto: UIImage? {
+        get {
+            guard let photoData = self.photoData else { return nil }
+            return UIImage(data: photoData)
+        } set {
+            photoData = newValue?.jpegData(compressionQuality: 0.5)
+        }
+    }
     
-    init(username: String, bio: String = "", recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), appleUserReference: CKRecord.Reference) {
+    var photoData: Data?
+    
+    var photoAsset: CKAsset {
+        get {
+            let tempDirectory = NSTemporaryDirectory()
+            let tempDirectoryURL = URL(fileURLWithPath: tempDirectory)
+            let fileURL = tempDirectoryURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
+            do {
+                try photoData?.write(to: fileURL)
+            } catch {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+            }
+            return CKAsset(fileURL: fileURL)
+        }
+    }
+    
+    init(username: String, bio: String = "", recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), appleUserReference: CKRecord.Reference, profilePhoto: UIImage? = nil) {
         self.username = username
         self.bio = bio
         self.recordID = recordID
         self.appleUserRef = appleUserReference
+        self.profilePhoto = profilePhoto
     }
 }
 
@@ -37,7 +63,18 @@ extension User {
             let appleUserRef = ckRecord[UserStrings.appleUserRefKey] as? CKRecord.Reference
             else { return nil }
         
-        self.init(username: username, appleUserReference: appleUserRef)
+        var foundPhoto: UIImage?
+        if let photoAsset = ckRecord[UserStrings.photoAssetKey] as? CKAsset {
+            do {
+                let data = try Data(contentsOf: photoAsset.fileURL!)
+                foundPhoto = UIImage(data: data)
+            } catch {
+                print("Could not transform asset to data")
+            }
+        }
+        
+        
+        self.init(username: username, bio: "", recordID: ckRecord.recordID, appleUserReference: appleUserRef, profilePhoto: foundPhoto)
     }
 }
 
@@ -53,7 +90,8 @@ extension CKRecord {
         setValuesForKeys([
             UserStrings.usernameKey : user.username,
             UserStrings.bioKey : user.bio,
-            UserStrings.appleUserRefKey : user.appleUserRef
+            UserStrings.appleUserRefKey : user.appleUserRef,
+            UserStrings.photoAssetKey : user.photoAsset
         ])
     }
 }

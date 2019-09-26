@@ -21,6 +21,7 @@
 		62DBDD13233D47DA00AB0200 /* HypeList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62DBDD11233D47DA00AB0200 /* HypeList.storyboard */; };
 		62DBDD15233D480800AB0200 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD14233D480800AB0200 /* SignUpViewController.swift */; };
 		62DBDD17233D482C00AB0200 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD16233D482C00AB0200 /* UserController.swift */; };
+		62DBDD19233D655E00AB0200 /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD18233D655E00AB0200 /* PhotoPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		62DBDD12233D47DA00AB0200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Hype/Views/Storyboards/Base.lproj/HypeList.storyboard; sourceTree = "<group>"; };
 		62DBDD14233D480800AB0200 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		62DBDD16233D482C00AB0200 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		62DBDD18233D655E00AB0200 /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			children = (
 				625E1222233C13F90076B139 /* HypeListViewController.swift */,
 				62DBDD14233D480800AB0200 /* SignUpViewController.swift */,
+				62DBDD18233D655E00AB0200 /* PhotoPickerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				625E1225233C143A0076B139 /* DateExtension.swift in Sources */,
 				62DBDD15233D480800AB0200 /* SignUpViewController.swift in Sources */,
 				625E121E233C13C00076B139 /* HypeController.swift in Sources */,
+				62DBDD19233D655E00AB0200 /* PhotoPickerViewController.swift in Sources */,
 				625E1223233C13F90076B139 /* HypeListViewController.swift in Sources */,
 				625E1202233C10690076B139 /* SceneDelegate.swift in Sources */,
 				625E121B233C13970076B139 /* Hype.swift in Sources */,

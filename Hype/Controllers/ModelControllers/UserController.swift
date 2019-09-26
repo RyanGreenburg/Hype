@@ -6,7 +6,7 @@
 //  Copyright © 2019 RYAN GREENBURG. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CloudKit
 // MARK: - Day 3 Changes
 
@@ -17,11 +17,11 @@ class UserController {
     var currentUser: User?
     let publicDB = CKContainer.default().publicCloudDatabase
     
-    func createUserWith(_ username: String, completion: @escaping (_ success: Bool) -> Void) {
+    func createUserWith(_ username: String, profilePhoto: UIImage?, completion: @escaping (_ success: Bool) -> Void) {
         fetchAppleUserReference { (reference) in
             guard let reference = reference else { completion(false) ; return }
             
-            let newUser = User(username: username, appleUserReference: reference)
+            let newUser = User(username: username, appleUserReference: reference, profilePhoto: profilePhoto)
             let record = CKRecord(user: newUser)
             self.publicDB.save(record) { (record, error) in
                 if let error = error {
