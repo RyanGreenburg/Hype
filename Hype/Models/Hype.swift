@@ -24,6 +24,11 @@ class Hype {
     var body: String
     /// Date value of when the hype was created
     var timestamp: Date
+    // MARK: - Day 2 Changes
+    // Add CKRecord property and incorporate it into Designated Init, Failable Init, and CKRecord Extension
+    /// The ID of the Hype object's CKRecord
+    var recordID: CKRecord.ID
+    
     /**
     Initializes a Hype object
      
@@ -31,9 +36,10 @@ class Hype {
         - body: String value for the Hype's body property
         - timestamp: Date value for the Hype's timestamp property, set with a default value of Date()
      */
-    init(body: String, timestamp: Date = Date()) {
+    init(body: String, timestamp: Date = Date(), recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
         self.body = body
         self.timestamp = timestamp
+        self.recordID = recordID
     }
 }
 
@@ -49,7 +55,7 @@ extension Hype {
         guard let body = ckRecord[HypeStrings.bodyKey] as? String,
             let timestamp = ckRecord[HypeStrings.timestampKey] as? Date
             else { return nil }
-        self.init(body: body, timestamp: timestamp)
+        self.init(body: body, timestamp: timestamp, recordID: ckRecord.recordID)
     }
 }
 
@@ -62,7 +68,7 @@ extension CKRecord {
         - hype: The Hype object to set Key/Value pairs for inside the CKRecord object
      */
     convenience init(hype: Hype) {
-        self.init(recordType: HypeStrings.recordTypeKey)
+        self.init(recordType: HypeStrings.recordTypeKey, recordID: hype.recordID)
         
         self.setValuesForKeys([
             HypeStrings.bodyKey : hype.body,
@@ -71,5 +77,13 @@ extension CKRecord {
         
 //        self.setValue(hype.body, forKey: HypeStrings.bodyKey)
 //        self.setValue(hype.timestamp, forKey: HypeStrings.timestampKey)
+    }
+}
+
+// MARK: - Day 2 Changes
+// MARK: - Equatable
+extension Hype: Equatable {
+    static func == (lhs: Hype, rhs: Hype) -> Bool {
+        return lhs.recordID == rhs.recordID
     }
 }

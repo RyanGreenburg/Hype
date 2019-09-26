@@ -24,7 +24,7 @@ class HypeListViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func addHypeButtonTapped(_ sender: Any) {
-        presentAddHypeAlert()
+        presentHypeAlert(for: nil)
     }
     
     // MARK: - Class Methods
@@ -51,7 +51,8 @@ class HypeListViewController: UIViewController {
         }
     }
     
-    func presentAddHypeAlert() {
+    // MARK: - Day 2 changes
+    func presentHypeAlert(for hype: Hype?) {
         let alertController = UIAlertController(title: "Get Hype!", message: "What is hype may never die", preferredStyle: .alert)
         
         alertController.addTextField { (textField) in
@@ -59,13 +60,25 @@ class HypeListViewController: UIViewController {
             textField.placeholder = "What is hype today?"
             textField.autocorrectionType = .yes
             textField.autocapitalizationType = .sentences
+            if let hype = hype {
+                textField.text = hype.body
+            }
         }
         
         let addHypeAction = UIAlertAction(title: "Send", style: .default) { (_) in
             guard let text = alertController.textFields?.first?.text, !text.isEmpty else { return }
-            HypeController.shared.saveHype(with: text) { (success) in
-                if success {
-                    self.updateViews()
+            if let hype = hype {
+                hype.body = text
+                HypeController.shared.update(hype) { (success) in
+                    if success {
+                        self.updateViews()
+                    }
+                }
+            } else {
+                HypeController.shared.saveHype(with: text) { (success) in
+                    if success {
+                        self.updateViews()
+                    }
                 }
             }
         }
@@ -94,6 +107,28 @@ extension HypeListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.detailTextLabel?.text = hype.timestamp.formatDate()
         
         return cell
+    }
+    
+    // MARK: - Day 2 changes
+    // Add functionality for update and delete rows. 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let hype = HypeController.shared.hypes[indexPath.row]
+        presentHypeAlert(for: hype)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let hypeToDelete = HypeController.shared.hypes[indexPath.row]
+            guard let index = HypeController.shared.hypes.firstIndex(of: hypeToDelete) else { return }
+            HypeController.shared.delete(hypeToDelete) { (success) in
+                if success {
+                    HypeController.shared.hypes.remove(at: index)
+                    DispatchQueue.main.async {
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                    }
+                }
+            }
+        }
     }
 }
 

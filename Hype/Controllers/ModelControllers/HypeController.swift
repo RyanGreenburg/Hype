@@ -79,4 +79,72 @@ class HypeController {
             completion(true)
         }
     }
+    
+    // MARK: - Day 2 Changes
+    // Need to add in CKRecord.ID onto the model for the modification operations
+    func update(_ hype: Hype, completion: @escaping (_ success: Bool) -> Void) {
+        // Step 2.a Create the record to save (update)
+        let record = CKRecord(hype: hype)
+        // Step 2 - Create the operation
+        let operation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
+        // Step 3 - Adjust the properties for the operation
+        operation.savePolicy = .changedKeys
+        operation.qualityOfService = .userInteractive
+        operation.modifyRecordsCompletionBlock = { (records, _, error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                completion(false)
+                return
+            }
+            
+            guard let record = records?.first else { completion(false) ; return }
+            print("Updated \(record.recordID) successfully in CloudKit")
+            completion(true)
+        }
+        // Step 1 - Add the operation to the database
+        publicDB.add(operation)
+    }
+    
+    func delete(_ hype: Hype, completion: @escaping (_ success: Bool) -> Void) {
+        
+        let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [hype.recordID])
+        operation.savePolicy = .changedKeys
+        operation.qualityOfService = .userInteractive
+        operation.modifyRecordsCompletionBlock = {records, _, error in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                completion(false)
+            }
+            
+            if records?.count == 0 {
+                print("Deleted record from CloudKit")
+                completion(true)
+            } else {
+                print("Unaccounted records were returned when trying to delete")
+                completion(false)
+            }
+        }
+        publicDB.add(operation)
+    }
+    
+    func subscribeForRemoteNotifications(completion: @escaping (_ error: Error?) -> Void) {
+        let predicate = NSPredicate(value: true)
+        let subscription = CKQuerySubscription(recordType: HypeStrings.recordTypeKey, predicate: predicate, options: .firesOnRecordCreation)
+        
+        let notificationInfo = CKSubscription.NotificationInfo()
+        notificationInfo.title = "CHOO CHOO"
+        notificationInfo.alertBody = "Can't Stop the Hype Train!!"
+        notificationInfo.shouldBadge = true
+        notificationInfo.soundName = "default"
+        subscription.notificationInfo = notificationInfo
+        
+        publicDB.save(subscription) { (_, error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                completion(error)
+            }
+            completion(nil)
+        }
+    }
 }
+
