@@ -82,6 +82,15 @@ class HypeController {
     
     // MARK: - Day 2 Changes
     // Need to add in CKRecord.ID onto the model for the modification operations
+    
+    /**
+    Updates a Hype with changed keys.
+     
+     - Parameters:
+        - hype: The Hype object that will be passed into the update operation
+        - completion: Escaping completion block for the method
+        - success: Boolean value indicating success or falure of the CKModifyRecordsOperation
+     */
     func update(_ hype: Hype, completion: @escaping (_ success: Bool) -> Void) {
         // Step 2.a Create the record to save (update)
         let record = CKRecord(hype: hype)
@@ -105,9 +114,18 @@ class HypeController {
         publicDB.add(operation)
     }
     
+    /**
+    Deletes a Hype with from the database
+     
+     - Parameters:
+        - hype: The Hype object that will be passed into the delete operation
+        - completion: Escaping completion block for the method
+        - success: Boolean value indicating success or falure of the CKModifyRecordsOperation
+     */
     func delete(_ hype: Hype, completion: @escaping (_ success: Bool) -> Void) {
-        
+        // Step 2 - Declare the operation
         let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [hype.recordID])
+        // Step 3 - Set the properties on the operation
         operation.savePolicy = .changedKeys
         operation.qualityOfService = .userInteractive
         operation.modifyRecordsCompletionBlock = {records, _, error in
@@ -124,20 +142,31 @@ class HypeController {
                 completion(false)
             }
         }
+        // Step 1 - Add the operation to the database
         publicDB.add(operation)
     }
     
+    /**
+     Subscribes the device to receive remote notifications from changes made to the database
+     
+     - Parameters:
+        - completion: Escaping completion block for the method
+        - error: Optional error returned when saving the CKQuerySubscription to the database
+     */
     func subscribeForRemoteNotifications(completion: @escaping (_ error: Error?) -> Void) {
+        // Step 2 - Create the needed query to pass into the subscription
         let predicate = NSPredicate(value: true)
+        // Step 1 - Create the CKQuerySubscription object
         let subscription = CKQuerySubscription(recordType: HypeStrings.recordTypeKey, predicate: predicate, options: .firesOnRecordCreation)
         
+        // Step 3 - Set the notification properties
         let notificationInfo = CKSubscription.NotificationInfo()
         notificationInfo.title = "CHOO CHOO"
         notificationInfo.alertBody = "Can't Stop the Hype Train!!"
         notificationInfo.shouldBadge = true
         notificationInfo.soundName = "default"
         subscription.notificationInfo = notificationInfo
-        
+        // Step 4 - Save the subscription to the database
         publicDB.save(subscription) { (_, error) in
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
