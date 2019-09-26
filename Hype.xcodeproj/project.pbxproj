@@ -68,8 +68,8 @@
 			isa = PBXGroup;
 			children = (
 				625E1214233C12910076B139 /* Hype.entitlements */,
-				625E121F233C13D00076B139 /* Controllers */,
 				625E121C233C13A00076B139 /* Models */,
+				625E121F233C13D00076B139 /* Controllers */,
 				625E1218233C136E0076B139 /* Views */,
 				625E1213233C127A0076B139 /* Resources */,
 			);
