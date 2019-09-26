@@ -16,6 +16,7 @@ struct HypeStrings {
     static let recordTypeKey = "Hype"
     fileprivate static let bodyKey = "body"
     fileprivate static let timestampKey = "timestamp"
+    fileprivate static let userReferenceKey = "userReference"
 }
 
 // MARK: - Class Declaration
@@ -28,6 +29,10 @@ class Hype {
     // Add CKRecord property and incorporate it into Designated Init, Failable Init, and CKRecord Extension
     /// The ID of the Hype object's CKRecord
     var recordID: CKRecord.ID
+    // MARK: - Day 3 Changes
+    // Add userReference property, has to be optional for existing Hypes.
+    // Add userRefrence to Designated Init, Failable Init, and CKRecord Extension
+    var userReference: CKRecord.Reference?
     
     /**
     Initializes a Hype object
@@ -36,10 +41,11 @@ class Hype {
         - body: String value for the Hype's body property
         - timestamp: Date value for the Hype's timestamp property, set with a default value of Date()
      */
-    init(body: String, timestamp: Date = Date(), recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
+    init(body: String, timestamp: Date = Date(), recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), userReference: CKRecord.Reference?) {
         self.body = body
         self.timestamp = timestamp
         self.recordID = recordID
+        self.userReference = userReference
     }
 }
 
@@ -55,7 +61,8 @@ extension Hype {
         guard let body = ckRecord[HypeStrings.bodyKey] as? String,
             let timestamp = ckRecord[HypeStrings.timestampKey] as? Date
             else { return nil }
-        self.init(body: body, timestamp: timestamp, recordID: ckRecord.recordID)
+        let userReference = ckRecord[HypeStrings.userReferenceKey] as? CKRecord.Reference
+        self.init(body: body, timestamp: timestamp, recordID: ckRecord.recordID, userReference: userReference)
     }
 }
 
@@ -72,7 +79,8 @@ extension CKRecord {
         
         self.setValuesForKeys([
             HypeStrings.bodyKey : hype.body,
-            HypeStrings.timestampKey : hype.timestamp
+            HypeStrings.timestampKey : hype.timestamp,
+            HypeStrings.userReferenceKey : hype.userReference
         ])
         
 //        self.setValue(hype.body, forKey: HypeStrings.bodyKey)

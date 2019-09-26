@@ -25,8 +25,10 @@ class HypeController {
         - success: Boolean value returned in the completion block indicating a success or failure on saving the CKRecord to CloudKit
      */
     func saveHype(with text: String, completion: @escaping (_ success: Bool) -> Void) {
+        guard let currentUser = UserController.shared.currentUser else { completion(false) ; return }
+        let reference = CKRecord.Reference(recordID: currentUser.recordID, action: .deleteSelf)
         // Inititialize a Hype object with the text value passed in as a parameter
-        let newHype = Hype(body: text)
+        let newHype = Hype(body: text, userReference: reference)
         // Initialize a CKRecord from the Hype object to be saved in CloudKit
         let hypeRecord = CKRecord(hype: newHype)
         // Call the CKContainer's save method on the database
@@ -42,7 +44,7 @@ class HypeController {
                 // Re-create the same Hype object from that record that we know was saved
                 let savedHype = Hype(ckRecord: record)
                 else { completion(false) ; return }
-            print("Saved Hype successfully")
+            print("Saved Hype: \(record.recordID.recordName) successfully")
             // Insert the successfully saved Hype object at the first index of our Source of Truth array
             self.hypes.insert(savedHype, at: 0)
             // Complete with success
@@ -107,7 +109,7 @@ class HypeController {
             }
             
             guard let record = records?.first else { completion(false) ; return }
-            print("Updated \(record.recordID) successfully in CloudKit")
+            print("Updated \(record.recordID.recordName) successfully in CloudKit")
             completion(true)
         }
         // Step 1 - Add the operation to the database

@@ -17,6 +17,10 @@
 		625E121E233C13C00076B139 /* HypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E121D233C13C00076B139 /* HypeController.swift */; };
 		625E1223233C13F90076B139 /* HypeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E1222233C13F90076B139 /* HypeListViewController.swift */; };
 		625E1225233C143A0076B139 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E1224233C143A0076B139 /* DateExtension.swift */; };
+		62DBDD10233D41AB00AB0200 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD0F233D41AB00AB0200 /* User.swift */; };
+		62DBDD13233D47DA00AB0200 /* HypeList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62DBDD11233D47DA00AB0200 /* HypeList.storyboard */; };
+		62DBDD15233D480800AB0200 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD14233D480800AB0200 /* SignUpViewController.swift */; };
+		62DBDD17233D482C00AB0200 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD16233D482C00AB0200 /* UserController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +37,10 @@
 		625E121D233C13C00076B139 /* HypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeController.swift; sourceTree = "<group>"; };
 		625E1222233C13F90076B139 /* HypeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeListViewController.swift; sourceTree = "<group>"; };
 		625E1224233C143A0076B139 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		62DBDD0F233D41AB00AB0200 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		62DBDD12233D47DA00AB0200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Hype/Views/Storyboards/Base.lproj/HypeList.storyboard; sourceTree = "<group>"; };
+		62DBDD14233D480800AB0200 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		62DBDD16233D482C00AB0200 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				625E1205233C10690076B139 /* Main.storyboard */,
+				62DBDD11233D47DA00AB0200 /* HypeList.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -116,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				625E121A233C13970076B139 /* Hype.swift */,
+				62DBDD0F233D41AB00AB0200 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -134,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				625E121D233C13C00076B139 /* HypeController.swift */,
+				62DBDD16233D482C00AB0200 /* UserController.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -142,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				625E1222233C13F90076B139 /* HypeListViewController.swift */,
+				62DBDD14233D480800AB0200 /* SignUpViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -212,6 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62DBDD13233D47DA00AB0200 /* HypeList.storyboard in Resources */,
 				625E120C233C106A0076B139 /* LaunchScreen.storyboard in Resources */,
 				625E1209233C106A0076B139 /* Assets.xcassets in Resources */,
 				625E1207233C10690076B139 /* Main.storyboard in Resources */,
@@ -225,12 +238,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62DBDD17233D482C00AB0200 /* UserController.swift in Sources */,
 				625E1200233C10690076B139 /* AppDelegate.swift in Sources */,
 				625E1225233C143A0076B139 /* DateExtension.swift in Sources */,
+				62DBDD15233D480800AB0200 /* SignUpViewController.swift in Sources */,
 				625E121E233C13C00076B139 /* HypeController.swift in Sources */,
 				625E1223233C13F90076B139 /* HypeListViewController.swift in Sources */,
 				625E1202233C10690076B139 /* SceneDelegate.swift in Sources */,
 				625E121B233C13970076B139 /* Hype.swift in Sources */,
+				62DBDD10233D41AB00AB0200 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +267,14 @@
 				625E120B233C106A0076B139 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		62DBDD11233D47DA00AB0200 /* HypeList.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62DBDD12233D47DA00AB0200 /* Base */,
+			);
+			name = HypeList.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
