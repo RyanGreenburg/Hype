@@ -17,6 +17,14 @@ class UserController {
     var currentUser: User?
     let publicDB = CKContainer.default().publicCloudDatabase
     
+    /**
+     Creates a User and saves it to CloudKit
+     
+     - Parameters:
+        - username: String value to pass into the User initializer
+        - completion: Escaping completion block for the method
+        - success: Boolean value indicating success or failure to save CKRecord to CloudKit
+     */
     func createUserWith(_ username: String, completion: @escaping (_ success: Bool) -> Void) {
         fetchAppleUserReference { (reference) in
             guard let reference = reference else { completion(false) ; return }
@@ -38,6 +46,13 @@ class UserController {
         }
     }
     
+    /**
+     Fetches a User object from the publicDatabase
+     
+     - Parameters:
+        - completion: Escaping completion block for the method
+        - success: Boolean value indicating success or falure to fetch the object from CloudKit
+     */
     func fetchUser(completion: @escaping (_ success: Bool) -> Void) {
         fetchAppleUserReference { (reference) in
             guard let reference = reference else { completion(false) ; return }
@@ -58,7 +73,14 @@ class UserController {
         }
     }
     
-    private func fetchAppleUserReference(completion: @escaping (CKRecord.Reference?) -> Void) {
+    /**
+     Fetches the recordID of the currently logged in AppleID User
+     
+     - Parameters:
+        - completion: Escaping completion block for the method
+        - reference: Optional reference for the found AppleID User
+     */
+    private func fetchAppleUserReference(completion: @escaping (_ reference: CKRecord.Reference?) -> Void) {
 
         CKContainer.default().fetchUserRecordID { (recordID, error) in
             if let error = error {

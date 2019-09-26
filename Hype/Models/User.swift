@@ -9,7 +9,9 @@
 import Foundation
 import CloudKit
 // MARK: - Day 3 Changes
-
+/**
+ UserStrings contains the String values for keys when setting values for CKRecords.
+ */
 struct UserStrings {
     static let recordTypeKey = "User"
     fileprivate static let usernameKey = "username"
@@ -23,6 +25,15 @@ class User {
     var recordID: CKRecord.ID
     var appleUserRef: CKRecord.Reference
     
+    /**
+     Initializes a User object
+     
+     - Parameters:
+        - username: String value for the User's username property
+        - bio: String value for the User's bio property, set by default to an empty string
+        - recordID: CKRecord.ID value for the User's recordID property, set by default to a uuidString
+        - appleUserReference: CKRecord.Reference value for the User's appleUserRef property
+     */
     init(username: String, bio: String = "", recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), appleUserReference: CKRecord.Reference) {
         self.username = username
         self.bio = bio
@@ -32,6 +43,12 @@ class User {
 }
 
 extension User {
+    /**
+     Failable Convenience initilaizer to initialize Users from CKRecords
+     
+     - Parameters:
+        - ckRecord: CKRecord containing Key/Value pairs to initailize a User object
+     */
     convenience init?(ckRecord: CKRecord) {
         guard let username = ckRecord[UserStrings.usernameKey] as? String,
             let appleUserRef = ckRecord[UserStrings.appleUserRefKey] as? CKRecord.Reference
