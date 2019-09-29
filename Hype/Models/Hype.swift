@@ -6,7 +6,7 @@
 //  Copyright © 2019 RYAN GREENBURG. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CloudKit
 // MARK: - Magic Strings
 /**
@@ -17,6 +17,7 @@ struct HypeStrings {
     fileprivate static let bodyKey = "body"
     fileprivate static let timestampKey = "timestamp"
     fileprivate static let userReferenceKey = "userReference"
+    fileprivate static let photoAssetKey = "photoAsset"
 }
 
 // MARK: - Class Declaration
@@ -33,6 +34,32 @@ class Hype {
     // Add userReference property, has to be optional for existing Hypes.
     // Add userRefrence to Designated Init, Failable Init, and CKRecord Extension
     var userReference: CKRecord.Reference?
+    // MARK: - Day 4 Changes
+    // Add CKAsset functionality
+    var hypePhoto: UIImage? {
+        get {
+            guard let photoData = self.photoData else { return nil }
+            return UIImage(data: photoData)
+        } set {
+            photoData = newValue?.jpegData(compressionQuality: 0.5)
+        }
+    }
+    
+    var photoData: Data?
+    
+    var photoAsset: CKAsset? {
+        get {
+            let tempDirectory = NSTemporaryDirectory()
+            let tempDirectoryURL = URL(fileURLWithPath: tempDirectory)
+            let fileURL = tempDirectoryURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
+            do {
+                try photoData?.write(to: fileURL)
+            } catch {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+            }
+            return CKAsset(fileURL: fileURL)
+        }
+    }
     
     /**
     Initializes a Hype object
@@ -41,11 +68,12 @@ class Hype {
         - body: String value for the Hype's body property
         - timestamp: Date value for the Hype's timestamp property, set with a default value of Date()
      */
-    init(body: String, timestamp: Date = Date(), recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), userReference: CKRecord.Reference?) {
+    init(body: String, timestamp: Date = Date(), recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), userReference: CKRecord.Reference?, hypePhoto: UIImage? = nil) {
         self.body = body
         self.timestamp = timestamp
         self.recordID = recordID
         self.userReference = userReference
+        self.hypePhoto = hypePhoto
     }
 }
 
@@ -62,7 +90,18 @@ extension Hype {
             let timestamp = ckRecord[HypeStrings.timestampKey] as? Date
             else { return nil }
         let userReference = ckRecord[HypeStrings.userReferenceKey] as? CKRecord.Reference
-        self.init(body: body, timestamp: timestamp, recordID: ckRecord.recordID, userReference: userReference)
+        
+        var foundPhoto: UIImage?
+        if let photoAsset = ckRecord[HypeStrings.photoAssetKey] as? CKAsset {
+            do {
+                let data = try Data(contentsOf: photoAsset.fileURL!)
+                foundPhoto = UIImage(data: data)
+            } catch {
+                print("Could not transform asset to data")
+            }
+        }
+        
+        self.init(body: body, timestamp: timestamp, recordID: ckRecord.recordID, userReference: userReference, hypePhoto: foundPhoto)
     }
 }
 
@@ -80,7 +119,8 @@ extension CKRecord {
         self.setValuesForKeys([
             HypeStrings.bodyKey : hype.body,
             HypeStrings.timestampKey : hype.timestamp,
-            HypeStrings.userReferenceKey : hype.userReference
+            HypeStrings.userReferenceKey : hype.userReference,
+            HypeStrings.photoAssetKey : hype.photoAsset
         ])
         
 //        self.setValue(hype.body, forKey: HypeStrings.bodyKey)

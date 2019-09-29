@@ -22,6 +22,9 @@
 		62DBDD15233D480800AB0200 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD14233D480800AB0200 /* SignUpViewController.swift */; };
 		62DBDD17233D482C00AB0200 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD16233D482C00AB0200 /* UserController.swift */; };
 		62DBDD19233D655E00AB0200 /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD18233D655E00AB0200 /* PhotoPickerViewController.swift */; };
+		62DBDD1C233E5F9400AB0200 /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62DBDD1A233E5F9400AB0200 /* PhotoPicker.storyboard */; };
+		62DBDD1E233E612000AB0200 /* HypePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD1D233E612000AB0200 /* HypePhotoViewController.swift */; };
+		62DBDD20233E688F00AB0200 /* HypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD1F233E688F00AB0200 /* HypeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		62DBDD14233D480800AB0200 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		62DBDD16233D482C00AB0200 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		62DBDD18233D655E00AB0200 /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
+		62DBDD1B233E5F9400AB0200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Hype/Views/Storyboards/Base.lproj/PhotoPicker.storyboard; sourceTree = "<group>"; };
+		62DBDD1D233E612000AB0200 /* HypePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypePhotoViewController.swift; sourceTree = "<group>"; };
+		62DBDD1F233E688F00AB0200 /* HypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,7 @@
 		625E1218233C136E0076B139 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				62DBDD21233E689200AB0200 /* Custom Cells */,
 				625E1219233C13740076B139 /* Storyboards */,
 			);
 			path = Views;
@@ -119,6 +126,7 @@
 			children = (
 				625E1205233C10690076B139 /* Main.storyboard */,
 				62DBDD11233D47DA00AB0200 /* HypeList.storyboard */,
+				62DBDD1A233E5F9400AB0200 /* PhotoPicker.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -157,6 +165,7 @@
 				625E1222233C13F90076B139 /* HypeListViewController.swift */,
 				62DBDD14233D480800AB0200 /* SignUpViewController.swift */,
 				62DBDD18233D655E00AB0200 /* PhotoPickerViewController.swift */,
+				62DBDD1D233E612000AB0200 /* HypePhotoViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -167,6 +176,14 @@
 				625E1224233C143A0076B139 /* DateExtension.swift */,
 			);
 			path = "Helpers+Extensions";
+			sourceTree = "<group>";
+		};
+		62DBDD21233E689200AB0200 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				62DBDD1F233E688F00AB0200 /* HypeTableViewCell.swift */,
+			);
+			path = "Custom Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62DBDD13233D47DA00AB0200 /* HypeList.storyboard in Resources */,
+				62DBDD1C233E5F9400AB0200 /* PhotoPicker.storyboard in Resources */,
 				625E120C233C106A0076B139 /* LaunchScreen.storyboard in Resources */,
 				625E1209233C106A0076B139 /* Assets.xcassets in Resources */,
 				625E1207233C10690076B139 /* Main.storyboard in Resources */,
@@ -241,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62DBDD1E233E612000AB0200 /* HypePhotoViewController.swift in Sources */,
 				62DBDD17233D482C00AB0200 /* UserController.swift in Sources */,
 				625E1200233C10690076B139 /* AppDelegate.swift in Sources */,
 				625E1225233C143A0076B139 /* DateExtension.swift in Sources */,
@@ -251,6 +270,7 @@
 				625E1202233C10690076B139 /* SceneDelegate.swift in Sources */,
 				625E121B233C13970076B139 /* Hype.swift in Sources */,
 				62DBDD10233D41AB00AB0200 /* User.swift in Sources */,
+				62DBDD20233E688F00AB0200 /* HypeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +299,14 @@
 				62DBDD12233D47DA00AB0200 /* Base */,
 			);
 			name = HypeList.storyboard;
+			sourceTree = "<group>";
+		};
+		62DBDD1A233E5F9400AB0200 /* PhotoPicker.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				62DBDD1B233E5F9400AB0200 /* Base */,
+			);
+			name = PhotoPicker.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

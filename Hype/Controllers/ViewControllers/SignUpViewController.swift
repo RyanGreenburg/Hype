@@ -12,12 +12,13 @@ class SignUpViewController: UIViewController {
     
     var image: UIImage?
     
+    @IBOutlet weak var photoContainerView: UIView!
     @IBOutlet weak var usernameTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchUser()
-        
+        setupViews()
     }
     
     @IBAction func signUpButtonTapped(_ sender: Any) {
@@ -27,6 +28,11 @@ class SignUpViewController: UIViewController {
                 self.presentHypeListVC()
             }
         }
+    }
+    
+    func setupViews() {
+        photoContainerView.layer.cornerRadius = photoContainerView.frame.height / 2
+        photoContainerView.clipsToBounds = true
     }
     
     func fetchUser() {

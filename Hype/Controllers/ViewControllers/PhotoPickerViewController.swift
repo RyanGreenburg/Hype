@@ -46,7 +46,6 @@ class PhotoPickerViewController: UIViewController, UINavigationControllerDelegat
     }
     
     func setupViews() {
-        photoImageView.layer.cornerRadius = photoImageView.frame.height / 2
         photoImageView.contentMode = .scaleAspectFill
         photoImageView.clipsToBounds = true
         photoImageView.backgroundColor = .black

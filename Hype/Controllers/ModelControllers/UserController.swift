@@ -58,6 +58,25 @@ class UserController {
         }
     }
     
+    func fetchUserFor(_ hype: Hype, completion: @escaping (User?) -> Void) {
+        guard let userID = hype.userReference?.recordID else { completion(nil) ; return }
+        
+        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["recordID", userID])
+        let query = CKQuery(recordType: UserStrings.recordTypeKey, predicate: predicate)
+        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                completion(nil)
+            }
+            
+            guard let record = records?.first,
+                let foundUser = User(ckRecord: record)
+                else { completion(nil) ; return }
+            print("Found user for hype")
+             completion(foundUser)
+        }
+    }
+    
     private func fetchAppleUserReference(completion: @escaping (CKRecord.Reference?) -> Void) {
 
         CKContainer.default().fetchUserRecordID { (recordID, error) in

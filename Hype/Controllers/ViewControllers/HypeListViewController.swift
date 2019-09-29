@@ -75,7 +75,7 @@ class HypeListViewController: UIViewController {
                     }
                 }
             } else {
-                HypeController.shared.saveHype(with: text) { (success) in
+                HypeController.shared.saveHype(with: text, photo: nil) { (success) in
                     if success {
                         self.updateViews()
                     }
@@ -100,13 +100,19 @@ extension HypeListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "hypeCell", for: indexPath)
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: "hypeCell", for: indexPath) as? HypeTableViewCell
         let hype = HypeController.shared.hypes[indexPath.row]
-        cell.textLabel?.text = hype.body
-        cell.detailTextLabel?.text = hype.timestamp.formatDate()
         
-        return cell
+        cell?.hype = hype
+        
+        UserController.shared.fetchUserFor(hype) { (user) in
+            if let user = user {
+                cell?.user = user
+            }
+        }
+        
+        return cell ?? UITableViewCell()
     }
     
     // MARK: - Day 2 changes

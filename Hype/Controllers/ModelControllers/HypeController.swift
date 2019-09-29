@@ -6,9 +6,10 @@
 //  Copyright © 2019 RYAN GREENBURG. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CloudKit
-
+// MARK: - Day 4 Changes
+// Edit saveHype to accomodate adding hypes with images
 class HypeController {
     /// The publicCloudDatabase of the default container
     let publicDB = CKContainer.default().publicCloudDatabase
@@ -24,11 +25,11 @@ class HypeController {
         - completion: Escaping completion block for the method
         - success: Boolean value returned in the completion block indicating a success or failure on saving the CKRecord to CloudKit
      */
-    func saveHype(with text: String, completion: @escaping (_ success: Bool) -> Void) {
+    func saveHype(with text: String, photo: UIImage?, completion: @escaping (_ success: Bool) -> Void) {
         guard let currentUser = UserController.shared.currentUser else { completion(false) ; return }
         let reference = CKRecord.Reference(recordID: currentUser.recordID, action: .deleteSelf)
         // Inititialize a Hype object with the text value passed in as a parameter
-        let newHype = Hype(body: text, userReference: reference)
+        let newHype = Hype(body: text, userReference: reference, hypePhoto: photo)
         // Initialize a CKRecord from the Hype object to be saved in CloudKit
         let hypeRecord = CKRecord(hype: newHype)
         // Call the CKContainer's save method on the database
