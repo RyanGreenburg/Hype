@@ -20,9 +20,13 @@ struct UserStrings {
 }
 
 class User {
+    /// String value of the User's username
     var username: String
+    /// String value of the User's bio
     var bio: String
+    /// CKRecord.ID value for the User object
     var recordID: CKRecord.ID
+    /// CKRecord.Reference pointing to the AppleID user
     var appleUserRef: CKRecord.Reference
     
     /**
@@ -65,6 +69,12 @@ extension User: Equatable {
 }
 
 extension CKRecord {
+    /**
+    Convenience Initializer to create a CKRecord from a Hype object
+    
+    - Parameters:
+       - user: The User object to set Key/Value pairs for inside the CKRecord object
+    */
     convenience init(user: User) {
         self.init(recordType: UserStrings.recordTypeKey, recordID: user.recordID)
         setValuesForKeys([
