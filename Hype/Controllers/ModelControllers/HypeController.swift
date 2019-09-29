@@ -100,12 +100,13 @@ class HypeController {
         operation.savePolicy = .changedKeys
         operation.qualityOfService = .userInteractive
         operation.modifyRecordsCompletionBlock = { (records, _, error) in
+            // Handle the optional error
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 completion(false)
                 return
             }
-            
+            // Unwrap the record that was updated and complete true
             guard let record = records?.first else { completion(false) ; return }
             print("Updated \(record.recordID) successfully in CloudKit")
             completion(true)
@@ -129,16 +130,17 @@ class HypeController {
         operation.savePolicy = .changedKeys
         operation.qualityOfService = .userInteractive
         operation.modifyRecordsCompletionBlock = {records, _, error in
+            // Handle the optional error
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 completion(false)
             }
-            
+            // Check to make sure there are no returned records and complete true
             if records?.count == 0 {
                 print("Deleted record from CloudKit")
                 completion(true)
             } else {
-                print("Unaccounted records were returned when trying to delete")
+                print("Unexpected records were returned when trying to delete")
                 completion(false)
             }
         }
@@ -168,6 +170,7 @@ class HypeController {
         subscription.notificationInfo = notificationInfo
         // Step 4 - Save the subscription to the database
         publicDB.save(subscription) { (_, error) in
+            // Handle the optional error
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 completion(error)
