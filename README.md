@@ -27,7 +27,7 @@ In this four day project students will learn the basics of the CloudKit framewor
 - Create the CKRecord Extension and convenience init that takes in a Hype object
 - Talk about how, when we retrieve that CKRecord from the cloud, we now need to convert it back into a Hype model object
 - Extend the hype class and create the failiable init that takes in a CKRecord
-- Add documentation to finish the file, have students explain what each line is doing out loud
+- Add documentation to finish the file, have students explain what each line is doing
 
 ##### Model Controller
 - Create the HypeController file, implement the singleton and source of truth array.
@@ -41,7 +41,7 @@ In this four day project students will learn the basics of the CloudKit framewor
   - Call the fetch in AppDelegate to fetch the hypes that are getting created. 
   - Talk about marking records queryable in the database
   - Remove the methods from the AppDelegate
-- Add documentation to finish the file, have students explain what each line is doing out loud
+- Add documentation to finish the file, have students explain what each line is doing
 
 ##### ViewController and Storyboard
 - Create and constrain the storyboard using a ViewController, tableView, and compose barButtonItem
@@ -55,6 +55,44 @@ In this four day project students will learn the basics of the CloudKit framewor
 - Demo the finished day1 app
 
 ## Day 2 - Implement CKModifyRecordsOperation, and CKSubscription
+### Documentation Links
+- [CKModifyRecordsOperation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation)
+- [CKSubscription](https://developer.apple.com/documentation/cloudkit/cksubscription)
+
+### Talking points before beginning
+- Discuss goal of implementing Update and Delete for Hype objects, and also implementing CKSubscription for user notifications
+
+### Starting the project
+#### CKModifyRecordsOperation
+
+##### ModelController
+- Delcare the update(hype:) and delete(hype:) method declaration
+- In update(hype:) call the .add(Operation) method on the publicDB.
+- Follow the steps to complete the implementation of the CKModifyRecordsOperation to update existing records
+- Do the same process for delete(hype:), have the students walk through the code, using update(hype:) for an example
+- Add documentation to the methods, have students explain what each line is doing
+
+##### ViewController
+- Edit the presentHypeAlert() method to take in an optional Hype object to allow for editing. 
+- Edit the addHypeAction to check if a hype was passed in and implement the udpate(hype:) method
+- Implement the didSelectRowAt tableView method to grab the hype you wish to edit and pass it into the presentHypeAlert(for hype:) method
+
+#### CKSubsription
+##### AppDelegate
+- Import UserNotificationCenter and request authorization for notificatino
+- Import CloudKit to implement didRegisterForRemoteNotificationWithDeviceToken, didFailToRegisterForRemoteNotificationsWithError, and didReceiveRemoteNotifaction
+- In the didReceiveRemoteNotification method, call fetchAllHypes to refresh the hype list
+- Talk about CKSubscription
+
+##### ModelController
+- Declare the subscribeFOrRemoteNotifications() method
+- Initialize a CKQuerySubscription, init the required predicate
+- Change all the properties on the subscription that we care about
+- Save the subscription to the publicDB
+- Demo the subscription notifications
+
+##### AppDelegate
+- Implement applicationDidBecomeActive to set the badge number to 0 when the app is opened
 
 
 ## Day 3 - CKRecord.Reference, CKUser
