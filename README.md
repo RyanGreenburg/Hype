@@ -27,7 +27,7 @@ In this four day project students will learn the basics of the CloudKit framewor
 - Create the CKRecord Extension and convenience init that takes in a Hype object
 - Talk about how, when we retrieve that CKRecord from the cloud, we now need to convert it back into a Hype model object
 - Extend the hype class and create the failiable init that takes in a CKRecord
-- Add documentation to finish the file
+- Add documentation to finish the file, have students explain what each line is doing out loud
 
 ##### Model Controller
 - Create the HypeController file, implement the singleton and source of truth array.
@@ -41,7 +41,7 @@ In this four day project students will learn the basics of the CloudKit framewor
   - Call the fetch in AppDelegate to fetch the hypes that are getting created. 
   - Talk about marking records queryable in the database
   - Remove the methods from the AppDelegate
-- Add documentation to finish the file
+- Add documentation to finish the file, have students explain what each line is doing out loud
 
 ##### ViewController and Storyboard
 - Create and constrain the storyboard using a ViewController, tableView, and compose barButtonItem
