@@ -9,7 +9,8 @@
 import UIKit
 import CloudKit
 // MARK: - Day 3 Changes
-
+// MARK: - Day 4 Changes
+// Edit createUser to accomodate images
 class UserController {
     
     static let shared = UserController()

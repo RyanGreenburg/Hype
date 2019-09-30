@@ -13,7 +13,7 @@ protocol PhotoSelectorDelegate: class {
     func photoPickerSelected(image: UIImage)
 }
 
-class PhotoPickerViewController: UIViewController, UINavigationControllerDelegate {
+class PhotoPickerViewController: UIViewController {
     
     let imagePicker = UIImagePickerController()
     weak var delegate: PhotoSelectorDelegate?
@@ -53,7 +53,7 @@ class PhotoPickerViewController: UIViewController, UINavigationControllerDelegat
     }
 }
 
-extension PhotoPickerViewController: UIImagePickerControllerDelegate {
+extension PhotoPickerViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func openCamera() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {

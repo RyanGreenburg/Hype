@@ -9,7 +9,8 @@
 import UIKit
 import CloudKit
 // MARK: - Day 3 Changes
-
+// MARK: - Day 4 Changes
+// Add all CKAsset properties/functionality
 struct UserStrings {
     static let recordTypeKey = "User"
     fileprivate static let usernameKey = "username"
