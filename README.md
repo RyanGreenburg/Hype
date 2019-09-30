@@ -96,7 +96,7 @@ In this four day project students will learn the basics of the CloudKit framewor
 
 
 ## Day 3 - CKRecord.Reference, CKUserIdentity
-### Documentation Link
+### Documentation Links
 
 - [CKUserIdentity](https://developer.apple.com/documentation/cloudkit/ckuseridentity)
   - Specifically the userRecordID property for referencing the AppleID User.
@@ -155,4 +155,55 @@ Changing the Model requres us to refactor the ModelController as well
 - Refactor the update(hype:) and delete(hype:) to take that into account.
 
 ## Day 4 - CKAsset
- 
+### Documentation Links
+[CKAsset](https://developer.apple.com/documentation/cloudkit/ckasset)
+
+### Talking points before beginning
+- Talk about storing data in the cloud with CKAsset
+  - Documentation is very helpful here (stored separate, saves only one copy of the asset).
+- Talk about the flow of data for storing something in a CKAsset and fetching an asset and transforming it back
+  - Very similar to the process of CKRecords
+  
+#### CKAsset
+##### User Model
+- Create the profilePhoto property, the photoData property, and the photoAsset property
+- Include the profilePhoto in the designated initializer with a default value of nil
+- Wite the get/set for the profilePhoto property
+- Write the get for the photoAsset
+- Include the photoAsset in the CKRecord Extension init
+- Unwrap the image in the failable init
+- Add documentation, have students explain what each line is doing
+
+##### UserController
+- Edit the createUser() method to accomodate the optional phofilePhoto
+
+##### SignUpViewController
+- Add in and constrain the containerView
+- Add an imageView and button to the new ViewController
+
+##### PhotoPickerViewController
+- Create the imagePicker property
+- Create the PhotoSelectorDelegate protocol, fill in the protocol method, and create the delegate property on the class
+- Create the PhotoPickerViewController file, subclass and wire up the views
+- In the selectPhoto action, create an alert controller with three actions: Cancel, Camera, Photo Library
+  - In the closure for cancel, call dismiss on the imagePicker, leave the other closures empty for now
+- Extend the class and conform to UIImagePickerControllerDelegate && UINavigationControllerDelegate
+- Implement the delegate method didFinishPickingMediaWIthInfo
+  - Unwrap the selected image and the delegate, then call the delegate.photoPickerSelected(image:) method
+  - Set the imageView's image to the selected image, and dismiss the picker
+- Declare and fill out the openCamera() and openGallery() methods
+- Call the methods in the cameraAction and photoLibraryAction above
+- Declare and fill out the setupViews() method
+- Call setupViews() in viewDidLoad
+
+##### SignUpViewController
+- Create the image property
+- Extend the class and conform to the PhotoSelectorDelegate protocol, setting self.image = image in the fuction body
+- Include the profilePhoto parameter in the createUser() method, pass in the image property
+- Override prepare(for segue:) and assign the delegate for the PhotoPickerViewController
+- Declare and fill out the setupViews() method, call it in viewDidLoad
+- Delete the current User in the dashboard and test the code
+
+##### Hype Model
+
+##### HypeController
