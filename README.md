@@ -100,23 +100,59 @@ In this four day project students will learn the basics of the CloudKit framewor
 
 - [CKUserIdentity](https://developer.apple.com/documentation/cloudkit/ckuseridentity)
   - Specifically the userRecordID property for referencing the AppleID User.
+  - Can touch on UserDiscoverability, but also mention that you can't edit the properties on the Users type in the dashboard. 
 - [CKRecord.Reference](https://developer.apple.com/documentation/cloudkit/ckrecord/reference)
 
 ### Talking points before beginning
 - What is a CKRecord.Reference, touch on similarities to Relationships in CoreData
 - CKUserIdentity being an AppleID User that you can use for authentication
 
-#### CKUserIdentity
+#### CKRecord.Reference
 ##### User Model
 - Create the User file and declare the User class with the username, bio, recordID, and appleUserReference properties
 - Create all needed initializers
+- Add documentation to initializers, have students explain what each line does
 
 ##### UserController
 - Create the UserController file and declare the class, implement the singleton and currentUser properties
 - Declare the needed CRUD functions
+- Begin filling out the createUser() method, and notice that we need a Reference to initialize the User
+
+#### CKUserIdentity
+- Delcare the fetchAppleUserReference() method, and walk through what it is doing
+  - Built in CloudKit method to fetch the CKRecord.ID for the currently logged in "Users" object
+  - We can use that to create a reference to our custom User object to handle login/account authentication
+  
+#### CKRecord.Reference Cont.
+- Call the fetchAppleUserReference() method in the creatUser() method and continue filling it out
+- Fill in the fetchUser() body, showing how we need to implement the fetchAppleUserReference() again.
+- Add documentation, have students explain what each line does
+ 
+
+##### Hype Model
+Currently the Hype objects have no reference to our custom User object. We need to refactor the model so Hypes point back to the User that created it.
+- Add the userReference property, mark it optional to account for existing Hypes without a reference
+- Include the userReference in the designated init, failable init, and CKRecord extension
+
+##### HypeController
+Changing the Model requres us to refactor the ModelController as well
+- Add the userReference property to the saveHype() method
 
 
-#### 
+##### ViewControllers && Storyboards
+- Create and constrain the SignUpViewController, make it the initial viewController
+- Refactor the HypeListViewController and it's navigationController to a new storyboard file
+- Create the SignUpViewController file and wire up the views
+- Declare a fetchUser() method where we call the UserController's fetchUser method. We do this to keep the viewDidLoad as clean as possible.
+- If we complete with success, we need to present the HypeListViewController
+- Declare the presentHypeListVC() method and walk through presenting the viewController we need programatically
+- If the fetchUser doesn't succeed, we need to give ourselves a way to create a User throught the sighUpButton action.
+- Implement the UserController createUser() method in the button action, and call the presentHypeListVC() method if it completes with success
+- Demo the app
+
+##### If there is time...
+- We have added in specific Users, but currently there is no way for us to distinguish who owns what hype. Anyone can make edits or delete any hype.
+- Refactor the update(hype:) and delete(hype:) to take that into account.
 
 ## Day 4 - CKAsset
  
