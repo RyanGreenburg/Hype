@@ -67,6 +67,8 @@ class Hype {
      - Parameters:
         - body: String value for the Hype's body property
         - timestamp: Date value for the Hype's timestamp property, set with a default value of Date()
+        - recordID: CKRecord.ID for the Hype object, set with a default value of a uuidString
+        - hypePhoto: Optional UIImage, set with a default value of nil
      */
     init(body: String, timestamp: Date = Date(), recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), userReference: CKRecord.Reference?, hypePhoto: UIImage? = nil) {
         self.body = body
