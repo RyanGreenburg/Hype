@@ -95,7 +95,28 @@ In this four day project students will learn the basics of the CloudKit framewor
 - Implement applicationDidBecomeActive to set the badge number to 0 when the app is opened
 
 
-## Day 3 - CKRecord.Reference, CKUser
+## Day 3 - CKRecord.Reference, CKUserIdentity
+### Documentation Link
+
+- [CKUserIdentity](https://developer.apple.com/documentation/cloudkit/ckuseridentity)
+  - Specifically the userRecordID property for referencing the AppleID User.
+- [CKRecord.Reference](https://developer.apple.com/documentation/cloudkit/ckrecord/reference)
+
+### Talking points before beginning
+- What is a CKRecord.Reference, touch on similarities to Relationships in CoreData
+- CKUserIdentity being an AppleID User that you can use for authentication
+
+#### CKUserIdentity
+##### User Model
+- Create the User file and declare the User class with the username, bio, recordID, and appleUserReference properties
+- Create all needed initializers
+
+##### UserController
+- Create the UserController file and declare the class, implement the singleton and currentUser properties
+- Declare the needed CRUD functions
+
+
+#### 
 
 ## Day 4 - CKAsset
  
