@@ -205,5 +205,29 @@ Changing the Model requres us to refactor the ModelController as well
 - Delete the current User in the dashboard and test the code
 
 ##### Hype Model
+Follow the same process to implement photos on Hype objects.
+- Add the hypePhoto, photoData, and photoAsset properties
+- Include the photo in the designated init with a default value of nil
+- Include the photoAsset in the CKRecord Extension init
+- Unwrap and set the photo in the clas failable init
+- Add documentation and have students explaine line by line
 
 ##### HypeController
+- Include a photo parameter in the saveHype() method, pass it in the newHype constant init as well
+
+
+##### HypeListViewController && HypeList.storyboard 
+- Add in a camera barButtonItem next to the compose button
+- Create a modal segue to a new ViewController
+- Constrain the view elements for the HypePhotoViewController, create the file, and wire up the views
+  - You will need to refactor the PhotoPickerViewController into it's own storyboard to drag out the embed segue to the storyboard reference
+
+##### HypePhotoViewController
+- In the viewController file conform to the PhotoSelectorDelegate
+  - Create an image property on the class
+  - Set the self.image = image in the protocol delegate method
+  - Set the delegate for the imagePicker in prepare(for segue:)
+- In the confirmButton action, unwrap the image and text from the outlets, and call the HypeController saveHype() method
+- Declare and fill in the dismissView() method
+  - Call this in the completion for the saveHype and cancelButton action
+- Declare and fill in the setupViews() to make the imageView look nice
