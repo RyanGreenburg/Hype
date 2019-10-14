@@ -75,8 +75,9 @@ class HypeController {
             guard let records = records else { completion(false) ; return }
             print("Fetched Hypes successfully")
             // Map through the found records, appling the Hype(ckRecord:) convenience init method as the transform
-            let hypes = records.compactMap({ Hype(ckRecord: $0) })
+            var hypes = records.compactMap({ Hype(ckRecord: $0) })
             // Set the Source of Truth array
+            hypes.sort(by: { $0.timestamp > $1.timestamp })
             self.hypes = hypes
             // Complete with success
             completion(true)

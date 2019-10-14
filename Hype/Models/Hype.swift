@@ -49,6 +49,8 @@ class Hype {
     
     var photoAsset: CKAsset? {
         get {
+            // Not having this guard check will break being able to create hypes without photos.
+            guard photoData != nil else { return nil }
             let tempDirectory = NSTemporaryDirectory()
             let tempDirectoryURL = URL(fileURLWithPath: tempDirectory)
             let fileURL = tempDirectoryURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
@@ -120,13 +122,16 @@ extension CKRecord {
         
         self.setValuesForKeys([
             HypeStrings.bodyKey : hype.body,
-            HypeStrings.timestampKey : hype.timestamp,
-            HypeStrings.userReferenceKey : hype.userReference,
-            HypeStrings.photoAssetKey : hype.photoAsset
+            HypeStrings.timestampKey : hype.timestamp
         ])
         
-//        self.setValue(hype.body, forKey: HypeStrings.bodyKey)
-//        self.setValue(hype.timestamp, forKey: HypeStrings.timestampKey)
+        if hype.photoAsset != nil {
+            self.setValue(hype.photoAsset, forKey: HypeStrings.photoAssetKey)
+        }
+        
+        if hype.userReference != nil {
+            self.setValue(hype.userReference, forKey: HypeStrings.userReferenceKey)
+        }
     }
 }
 
