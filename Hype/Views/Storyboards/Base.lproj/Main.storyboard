@@ -49,11 +49,11 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xD3-vw-UX8">
                                                 <rect key="frame" x="0.0" y="0.0" width="148.5" height="57"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Log In"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcz-uG-2qb">
                                                 <rect key="frame" x="0.0" y="57" width="148.5" height="57"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Sign Up"/>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -79,27 +79,47 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bvr-6c-noy">
-                                <rect key="frame" x="289" y="523" width="54" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="sED-Ql-Epk">
+                                <rect key="frame" x="289" y="527" width="66" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bvr-6c-noy">
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="30"/>
+                                        <state key="normal" title="Help"/>
+                                        <connections>
+                                            <action selector="signUpButtonTapped:" destination="NGF-sS-24X" eventType="touchUpInside" id="qit-97-V1Y"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPy-aZ-ORg">
+                                        <rect key="frame" x="36" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="FAQ"/>
+                                        <connections>
+                                            <action selector="signUpButtonTapped:" destination="NGF-sS-24X" eventType="touchUpInside" id="KM5-AV-5iT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7r2-Cp-tRu">
+                                <rect key="frame" x="223" y="601" width="132" height="53"/>
                                 <state key="normal" title="Sign Up"/>
-                                <connections>
-                                    <action selector="signUpButtonTapped:" destination="NGF-sS-24X" eventType="touchUpInside" id="qit-97-V1Y"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="7r2-Cp-tRu" firstAttribute="centerX" secondItem="sED-Ql-Epk" secondAttribute="leading" id="7c5-EO-Dsr"/>
                             <constraint firstItem="pCp-sz-WPg" firstAttribute="leading" secondItem="bs0-ul-yZ3" secondAttribute="leading" id="JCp-i2-q41"/>
                             <constraint firstItem="pCp-sz-WPg" firstAttribute="trailing" secondItem="bs0-ul-yZ3" secondAttribute="trailing" constant="16" id="JWk-Nb-AB5"/>
                             <constraint firstItem="lWk-Yw-gXx" firstAttribute="centerY" secondItem="5pI-Xv-eLD" secondAttribute="centerY" multiplier="0.35" id="Kpx-ti-XNj"/>
                             <constraint firstItem="rgo-rH-zld" firstAttribute="width" secondItem="bs0-ul-yZ3" secondAttribute="width" multiplier="0.68" id="V8U-LG-1rh"/>
                             <constraint firstItem="pCp-sz-WPg" firstAttribute="centerY" secondItem="5pI-Xv-eLD" secondAttribute="centerY" id="bp6-RY-Vx9"/>
+                            <constraint firstItem="7r2-Cp-tRu" firstAttribute="trailing" secondItem="sED-Ql-Epk" secondAttribute="trailing" id="ejR-iH-hiD"/>
+                            <constraint firstItem="7r2-Cp-tRu" firstAttribute="top" secondItem="sED-Ql-Epk" secondAttribute="bottom" constant="44" id="fGo-d9-0gZ"/>
+                            <constraint firstItem="sED-Ql-Epk" firstAttribute="leading" secondItem="rgo-rH-zld" secondAttribute="centerX" id="gZw-xc-dzI"/>
                             <constraint firstItem="kFJ-xp-qgS" firstAttribute="width" secondItem="bs0-ul-yZ3" secondAttribute="width" multiplier="0.85" id="m0A-yd-gxS"/>
                             <constraint firstAttribute="trailing" secondItem="kFJ-xp-qgS" secondAttribute="trailing" id="noY-dd-aCq"/>
-                            <constraint firstItem="Bvr-6c-noy" firstAttribute="leading" secondItem="rgo-rH-zld" secondAttribute="centerX" id="rxj-3F-BWF"/>
+                            <constraint firstItem="sED-Ql-Epk" firstAttribute="top" secondItem="pCp-sz-WPg" secondAttribute="bottom" constant="22" id="smh-Qh-UFq"/>
                             <constraint firstItem="kFJ-xp-qgS" firstAttribute="centerY" secondItem="5pI-Xv-eLD" secondAttribute="centerY" multiplier="0.65" id="uAw-nj-sag"/>
-                            <constraint firstItem="Bvr-6c-noy" firstAttribute="top" secondItem="pCp-sz-WPg" secondAttribute="bottom" constant="18" id="vDW-O8-k9u"/>
                             <constraint firstItem="lWk-Yw-gXx" firstAttribute="leading" secondItem="kFJ-xp-qgS" secondAttribute="leading" id="xpZ-nS-FAi"/>
+                            <constraint firstItem="7r2-Cp-tRu" firstAttribute="height" secondItem="bs0-ul-yZ3" secondAttribute="height" multiplier="0.065" id="y0o-zb-9lt"/>
                             <constraint firstItem="lWk-Yw-gXx" firstAttribute="height" secondItem="bs0-ul-yZ3" secondAttribute="height" multiplier="0.2" id="yUn-je-rEr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bs0-ul-yZ3"/>
