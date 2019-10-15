@@ -17,7 +17,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchUser()
+   //     fetchUser()
         setupViews()
     }
     
