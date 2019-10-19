@@ -11,13 +11,28 @@ import UIKit
 class SignUpViewController: UIViewController {
     
     var image: UIImage?
+    var logInState = false
     
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var welcomLabel: UILabel!
+    @IBOutlet weak var faqButton: UIButton!
+    @IBOutlet weak var helpButton: UIButton!
+    @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var createUserButton: HypeButton!
     @IBOutlet weak var photoContainerView: UIView!
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var usernameTextField: HypeTextField!
+    @IBOutlet weak var passcodeTextField: HypeTextField!
+    @IBOutlet weak var confirmPasscodeTextField: HypeTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
    //     fetchUser()
+//        setupViews()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         setupViews()
     }
     
@@ -30,9 +45,27 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    @IBAction func logInButtonTapped(_ sender: UIButton) {
+        switch logInState {
+        case false:
+            toggleToLogIn()
+            logInState = true
+        case true:
+            toggleToSignUp()
+            logInState = false
+        }
+    }
+    
     func setupViews() {
-        photoContainerView.layer.cornerRadius = photoContainerView.frame.height / 2
+         self.view.backgroundColor = .black
+        photoContainerView.addCornerRadius(photoContainerView.frame.height / 2)
         photoContainerView.clipsToBounds = true
+        logInButton.rotate()
+        signUpButton.rotate()
+        signUpButton.setTitleColor(.mainTextColor, for: .normal)
+        logInButton.setTitleColor(.subltleTextColor, for: .normal)
+        helpButton.setTitleColor(.mainTextColor, for: .normal)
+        faqButton.setTitleColor(.greenAccent, for: .normal)
     }
     
     func fetchUser() {
@@ -49,6 +82,28 @@ class SignUpViewController: UIViewController {
             guard let viewController = storyboard.instantiateInitialViewController() else { return }
             viewController.modalPresentationStyle = .fullScreen
             self.present(viewController, animated: true)
+        }
+    }
+    
+    func toggleToLogIn() {
+        UIView.animate(withDuration: 0.2) {
+            self.logInButton.setTitleColor(.mainTextColor, for: .normal)
+            self.signUpButton.setTitleColor(.subltleTextColor, for: .normal)
+            self.createUserButton.setTitle("Log Me In!", for: .normal)
+            self.confirmPasscodeTextField.isHidden = true
+            self.helpButton.setTitle("Forgot?", for: .normal)
+            self.faqButton.setTitle("Hint?", for: .normal)
+        }
+    }
+    
+    func toggleToSignUp() {
+        UIView.animate(withDuration: 0.2) {
+            self.logInButton.setTitleColor(.subltleTextColor, for: .normal)
+            self.signUpButton.setTitleColor(.mainTextColor, for: .normal)
+            self.createUserButton.setTitle("Sign Me Up!", for: .normal)
+            self.confirmPasscodeTextField.isHidden = false
+            self.helpButton.setTitle("Help", for: .normal)
+            self.faqButton.setTitle("FAQ", for: .normal)
         }
     }
     
