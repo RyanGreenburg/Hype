@@ -31,7 +31,7 @@ class HypeTableViewCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var hypeLabel: UILabel!
     @IBOutlet weak var hypeImageView: UIImageView!
-    @IBOutlet weak var hypePhotoStackView: UIStackView!
+    @IBOutlet weak var dateLabel: UILabel!
     
     func setupViews() {
         profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
@@ -44,9 +44,11 @@ class HypeTableViewCell: UITableViewCell {
         hypeImageView.image = nil
         guard let hype = hype else { return }
         hypeLabel.text = hype.body
+        dateLabel.text = hype.timestamp.formatDate()
         
         if let hypeImage = hype.hypePhoto {
             hypeImageView.image = hypeImage
+            hypeImageView.isHidden = false
         } else {
             hypeImageView.isHidden = true
         }

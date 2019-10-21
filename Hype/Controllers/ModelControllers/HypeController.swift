@@ -57,8 +57,13 @@ class HypeController {
         // Step 2 - Create the query needed for the perform(query) method
         CloudKitManager.fetchRecordsOf(type: HypeStrings.recordTypeKey, with: predicate) { (records) in
             guard let records = records else { completion(false) ; return }
-            let foundHypes = records.compactMap { Hype(ckRecord: $0) }
-            self.hypes = foundHypes
+            print("Fetched Hypes successfully")
+            // Map through the found records, appling the Hype(ckRecord:) convenience init method as the transform
+            var hypes = records.compactMap({ Hype(ckRecord: $0) })
+            // Set the Source of Truth array
+            hypes.sort(by: { $0.timestamp > $1.timestamp })
+            self.hypes = hypes
+            // Complete with success
             completion(true)
         }
     }
