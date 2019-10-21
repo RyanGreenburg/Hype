@@ -7,11 +7,12 @@
 //
 
 import UIKit
- // MARK: - Day 3 Changes
+// MARK: - Day 3 Changes
 class SignUpViewController: UIViewController {
     
     var image: UIImage?
-    var logInState = false
+    var viewsLaidOut = false
+    var photoPicker: PhotoPickerViewController?
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var welcomLabel: UILabel!
@@ -27,16 +28,19 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   //     fetchUser()
-//        setupViews()
+        fetchUser()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupViews()
+        if !viewsLaidOut {
+            setupViews()
+            viewsLaidOut = true
+        }
     }
     
-    @IBAction func signUpButtonTapped(_ sender: Any) {
+    @IBAction func signInButtonTapped(_ sender: Any) {
+        guard UserController.shared.currentUser == nil else { self.presentHypeListVC() ; return }
         guard let username = usernameTextField.text, !username.isEmpty else { return }
         UserController.shared.createUserWith(username, profilePhoto: image) { (success) in
             if success {
@@ -46,24 +50,21 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func logInButtonTapped(_ sender: UIButton) {
-        switch logInState {
-        case false:
-            toggleToLogIn()
-            logInState = true
-        case true:
-            toggleToSignUp()
-            logInState = false
-        }
+        toggleToLogIn()
+    }
+    
+    @IBAction func signUpButtonTapped(_ sender: Any) {
+        toggleToSignUp()
     }
     
     func setupViews() {
-         self.view.backgroundColor = .black
+        self.view.backgroundColor = .black
         photoContainerView.addCornerRadius(photoContainerView.frame.height / 2)
         photoContainerView.clipsToBounds = true
         logInButton.rotate()
         signUpButton.rotate()
-        signUpButton.setTitleColor(.mainTextColor, for: .normal)
-        logInButton.setTitleColor(.subltleTextColor, for: .normal)
+        signUpButton.tintColor = .mainTextColor
+        logInButton.tintColor = .subltleTextColor
         helpButton.setTitleColor(.mainTextColor, for: .normal)
         faqButton.setTitleColor(.greenAccent, for: .normal)
     }
@@ -71,7 +72,8 @@ class SignUpViewController: UIViewController {
     func fetchUser() {
         UserController.shared.fetchUser { (success) in
             if success {
-                self.presentHypeListVC()
+                self.toggleToLogIn()
+                self.photoPicker?.updateViews()
             }
         }
     }
@@ -86,20 +88,22 @@ class SignUpViewController: UIViewController {
     }
     
     func toggleToLogIn() {
-        UIView.animate(withDuration: 0.2) {
-            self.logInButton.setTitleColor(.mainTextColor, for: .normal)
-            self.signUpButton.setTitleColor(.subltleTextColor, for: .normal)
-            self.createUserButton.setTitle("Log Me In!", for: .normal)
-            self.confirmPasscodeTextField.isHidden = true
-            self.helpButton.setTitle("Forgot?", for: .normal)
-            self.faqButton.setTitle("Hint?", for: .normal)
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.2) {
+                self.confirmPasscodeTextField.isHidden = true
+                self.logInButton.tintColor = .mainTextColor
+                self.signUpButton.tintColor = .subltleTextColor
+                self.createUserButton.setTitle("Log Me In!", for: .normal)
+                self.helpButton.setTitle("Forgot?", for: .normal)
+                self.faqButton.setTitle("Hint?", for: .normal)
+            }
         }
     }
     
     func toggleToSignUp() {
         UIView.animate(withDuration: 0.2) {
-            self.logInButton.setTitleColor(.subltleTextColor, for: .normal)
-            self.signUpButton.setTitleColor(.mainTextColor, for: .normal)
+            self.signUpButton.tintColor = .mainTextColor
+            self.logInButton.tintColor = .subltleTextColor
             self.createUserButton.setTitle("Sign Me Up!", for: .normal)
             self.confirmPasscodeTextField.isHidden = false
             self.helpButton.setTitle("Help", for: .normal)
@@ -111,6 +115,7 @@ class SignUpViewController: UIViewController {
         if segue.identifier == "photoPicerVC" {
             let destinationVC = segue.destination as? PhotoPickerViewController
             destinationVC?.delegate = self
+            self.photoPicker = destinationVC
         }
     }
 }

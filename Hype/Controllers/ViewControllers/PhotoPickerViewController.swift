@@ -48,8 +48,15 @@ class PhotoPickerViewController: UIViewController {
     func setupViews() {
         photoImageView.contentMode = .scaleAspectFill
         photoImageView.clipsToBounds = true
-        photoImageView.backgroundColor = .blue
+        photoImageView.backgroundColor = .purpleAccent
         imagePicker.delegate = self
+    }
+    
+    func updateViews() {
+        DispatchQueue.main.async {
+            guard let user = UserController.shared.currentUser else { return }
+            self.photoImageView.image = user.profilePhoto
+        }
     }
 }
 

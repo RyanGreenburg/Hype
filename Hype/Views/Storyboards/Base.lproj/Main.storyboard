@@ -42,29 +42,29 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCp-sz-WPg">
-                                <rect key="frame" x="0.0" y="398.5" width="430" height="188.5"/>
+                                <rect key="frame" x="31" y="398.5" width="393.5" height="188.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2uc-Je-mkE">
-                                        <rect key="frame" x="0.0" y="0.0" width="148.5" height="188.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2uc-Je-mkE">
+                                        <rect key="frame" x="0.0" y="0.0" width="112" height="188.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xD3-vw-UX8">
-                                                <rect key="frame" x="0.0" y="0.0" width="148.5" height="94.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="112" height="84.5"/>
                                                 <state key="normal" title="Log In"/>
                                                 <connections>
-                                                    <action selector="logInButtonTapped:" destination="NGF-sS-24X" eventType="touchUpInside" id="V3H-2I-Vrf"/>
+                                                    <action selector="logInButtonTapped:" destination="NGF-sS-24X" eventType="touchUpInside" id="o0o-7t-HmU"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcz-uG-2qb">
-                                                <rect key="frame" x="0.0" y="94.5" width="148.5" height="94"/>
+                                                <rect key="frame" x="0.0" y="104.5" width="112" height="84"/>
                                                 <state key="normal" title="Sign Up"/>
                                                 <connections>
-                                                    <action selector="logInButtonTapped:" destination="NGF-sS-24X" eventType="touchUpInside" id="16f-or-2Vd"/>
+                                                    <action selector="signUpButtonTapped:" destination="NGF-sS-24X" eventType="touchUpInside" id="NYp-pQ-H5h"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="rgo-rH-zld">
-                                        <rect key="frame" x="148.5" y="0.0" width="281.5" height="188.5"/>
+                                        <rect key="frame" x="112" y="0.0" width="281.5" height="188.5"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your username here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4oh-md-VX1" customClass="HypeTextField" customModule="Hype" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="281.5" height="59"/>
@@ -89,35 +89,31 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="sED-Ql-Epk">
-                                <rect key="frame" x="289" y="609" width="66" height="30"/>
+                                <rect key="frame" x="283.5" y="609" width="66" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bvr-6c-noy">
                                         <rect key="frame" x="0.0" y="0.0" width="32" height="30"/>
                                         <state key="normal" title="Help"/>
-                                        <connections>
-                                            <action selector="signUpButtonTapped:" destination="NGF-sS-24X" eventType="touchUpInside" id="qit-97-V1Y"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPy-aZ-ORg">
                                         <rect key="frame" x="36" y="0.0" width="30" height="30"/>
                                         <state key="normal" title="FAQ"/>
-                                        <connections>
-                                            <action selector="signUpButtonTapped:" destination="NGF-sS-24X" eventType="touchUpInside" id="KM5-AV-5iT"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7r2-Cp-tRu" customClass="HypeButton" customModule="Hype" customModuleProvider="target">
-                                <rect key="frame" x="223" y="683" width="132" height="53.5"/>
+                                <rect key="frame" x="217.5" y="683" width="132" height="53.5"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signInButtonTapped:" destination="NGF-sS-24X" eventType="touchUpInside" id="nJA-Cj-gjl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="7r2-Cp-tRu" firstAttribute="centerX" secondItem="sED-Ql-Epk" secondAttribute="leading" id="7c5-EO-Dsr"/>
-                            <constraint firstItem="pCp-sz-WPg" firstAttribute="leading" secondItem="bs0-ul-yZ3" secondAttribute="leading" id="JCp-i2-q41"/>
-                            <constraint firstItem="pCp-sz-WPg" firstAttribute="trailing" secondItem="bs0-ul-yZ3" secondAttribute="trailing" constant="16" id="JWk-Nb-AB5"/>
                             <constraint firstItem="lWk-Yw-gXx" firstAttribute="centerY" secondItem="5pI-Xv-eLD" secondAttribute="centerY" multiplier="0.45" id="Kpx-ti-XNj"/>
+                            <constraint firstItem="pCp-sz-WPg" firstAttribute="width" secondItem="bs0-ul-yZ3" secondAttribute="width" multiplier="0.95" id="Q1i-bz-Oyz"/>
                             <constraint firstItem="rgo-rH-zld" firstAttribute="width" secondItem="bs0-ul-yZ3" secondAttribute="width" multiplier="0.68" id="V8U-LG-1rh"/>
                             <constraint firstItem="pCp-sz-WPg" firstAttribute="centerY" secondItem="5pI-Xv-eLD" secondAttribute="centerY" multiplier="1.1" id="bp6-RY-Vx9"/>
                             <constraint firstItem="7r2-Cp-tRu" firstAttribute="trailing" secondItem="sED-Ql-Epk" secondAttribute="trailing" id="ejR-iH-hiD"/>
@@ -126,6 +122,7 @@
                             <constraint firstItem="kFJ-xp-qgS" firstAttribute="width" secondItem="bs0-ul-yZ3" secondAttribute="width" multiplier="0.85" id="m0A-yd-gxS"/>
                             <constraint firstAttribute="trailing" secondItem="kFJ-xp-qgS" secondAttribute="trailing" id="noY-dd-aCq"/>
                             <constraint firstItem="4oh-md-VX1" firstAttribute="height" secondItem="bs0-ul-yZ3" secondAttribute="height" multiplier="0.072" priority="999" id="nuH-5C-EeT"/>
+                            <constraint firstItem="pCp-sz-WPg" firstAttribute="centerX" secondItem="bs0-ul-yZ3" secondAttribute="centerX" multiplier="1.1" id="qLM-CF-5y9"/>
                             <constraint firstItem="sED-Ql-Epk" firstAttribute="top" secondItem="pCp-sz-WPg" secondAttribute="bottom" constant="22" id="smh-Qh-UFq"/>
                             <constraint firstItem="kFJ-xp-qgS" firstAttribute="centerY" secondItem="5pI-Xv-eLD" secondAttribute="centerY" multiplier="0.75" id="uAw-nj-sag"/>
                             <constraint firstItem="lWk-Yw-gXx" firstAttribute="leading" secondItem="kFJ-xp-qgS" secondAttribute="leading" id="xpZ-nS-FAi"/>

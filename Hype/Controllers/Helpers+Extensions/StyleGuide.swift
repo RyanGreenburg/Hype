@@ -37,4 +37,5 @@ extension UIColor {
     static let subltleTextColor = UIColor(named: "subtleText")!
     static let mainTextColor = UIColor(named: "mainText")!
     static let blackOverlay = UIColor(named: "blackOverlay")!
+    static let purpleAccent = UIColor(named: "purpleAccent")!
 }
