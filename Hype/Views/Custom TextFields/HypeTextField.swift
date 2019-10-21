@@ -22,7 +22,7 @@ class HypeTextField: UITextField {
         updateFontTo(font: FontNames.latoRegular)
         self.textColor = .mainTextColor
         self.tintColor = .mainTextColor
-        self.backgroundColor = .spaceGray
+        self.backgroundColor = .blackOverlay
         self.layer.masksToBounds = true
     }
     

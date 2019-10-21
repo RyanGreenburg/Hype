@@ -56,6 +56,7 @@ class PhotoPickerViewController: UIViewController {
         DispatchQueue.main.async {
             guard let user = UserController.shared.currentUser else { return }
             self.photoImageView.image = user.profilePhoto
+            self.selectPhotoButton.titleLabel?.text = ""
         }
     }
 }
@@ -94,6 +95,7 @@ extension PhotoPickerViewController: UIImagePickerControllerDelegate, UINavigati
                 else { return }
             delegate.photoPickerSelected(image: pickedImage)
             photoImageView.image = pickedImage
+            selectPhotoButton.titleLabel?.text = ""
         }
         picker.dismiss(animated: true, completion: nil)
     }

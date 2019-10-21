@@ -12,7 +12,7 @@ class SignUpViewController: UIViewController {
     
     var image: UIImage?
     var viewsLaidOut = false
-    var photoPicker: PhotoPickerViewController?
+    weak var photoPicker: PhotoPickerViewController?
     
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var welcomLabel: UILabel!
@@ -58,7 +58,7 @@ class SignUpViewController: UIViewController {
     }
     
     func setupViews() {
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = .spaceGray
         photoContainerView.addCornerRadius(photoContainerView.frame.height / 2)
         photoContainerView.clipsToBounds = true
         logInButton.rotate()
@@ -96,6 +96,7 @@ class SignUpViewController: UIViewController {
                 self.createUserButton.setTitle("Log Me In!", for: .normal)
                 self.helpButton.setTitle("Forgot?", for: .normal)
                 self.faqButton.setTitle("Hint?", for: .normal)
+                self.usernameTextField.text = UserController.shared.currentUser?.username
             }
         }
     }
@@ -108,6 +109,7 @@ class SignUpViewController: UIViewController {
             self.confirmPasscodeTextField.isHidden = false
             self.helpButton.setTitle("Help", for: .normal)
             self.faqButton.setTitle("FAQ", for: .normal)
+            self.usernameTextField.text = ""
         }
     }
     
