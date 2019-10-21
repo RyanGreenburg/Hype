@@ -17,6 +17,15 @@
 		625E121E233C13C00076B139 /* HypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E121D233C13C00076B139 /* HypeController.swift */; };
 		625E1223233C13F90076B139 /* HypeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E1222233C13F90076B139 /* HypeListViewController.swift */; };
 		625E1225233C143A0076B139 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625E1224233C143A0076B139 /* DateExtension.swift */; };
+		626BDB30235A10BB00C37FAD /* HypeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626BDB2F235A10BB00C37FAD /* HypeLabel.swift */; };
+		626BDB33235A118400C37FAD /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626BDB32235A118400C37FAD /* StyleGuide.swift */; };
+		626BDB3A235A1A3C00C37FAD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 626BDB39235A1A3C00C37FAD /* Colors.xcassets */; };
+		626BDB3C235A1D8900C37FAD /* HypeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626BDB3B235A1D8900C37FAD /* HypeTextField.swift */; };
+		626BDB3E235A1F8A00C37FAD /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 626BDB3D235A1F8A00C37FAD /* Lato-Bold.ttf */; };
+		626BDB43235A1FD500C37FAD /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 626BDB42235A1FD500C37FAD /* Lato-Light.ttf */; };
+		626BDB45235A1FDD00C37FAD /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 626BDB44235A1FDD00C37FAD /* Lato-Regular.ttf */; };
+		626BDB47235A258A00C37FAD /* HypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626BDB46235A258A00C37FAD /* HypeButton.swift */; };
+		629EFBD223466B7900D8C1CD /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629EFBD123466B7900D8C1CD /* CloudKitManager.swift */; };
 		62DBDD10233D41AB00AB0200 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD0F233D41AB00AB0200 /* User.swift */; };
 		62DBDD13233D47DA00AB0200 /* HypeList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62DBDD11233D47DA00AB0200 /* HypeList.storyboard */; };
 		62DBDD15233D480800AB0200 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD14233D480800AB0200 /* SignUpViewController.swift */; };
@@ -41,6 +50,15 @@
 		625E121D233C13C00076B139 /* HypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeController.swift; sourceTree = "<group>"; };
 		625E1222233C13F90076B139 /* HypeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeListViewController.swift; sourceTree = "<group>"; };
 		625E1224233C143A0076B139 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		626BDB2F235A10BB00C37FAD /* HypeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeLabel.swift; sourceTree = "<group>"; };
+		626BDB32235A118400C37FAD /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
+		626BDB39235A1A3C00C37FAD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		626BDB3B235A1D8900C37FAD /* HypeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeTextField.swift; sourceTree = "<group>"; };
+		626BDB3D235A1F8A00C37FAD /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		626BDB42235A1FD500C37FAD /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		626BDB44235A1FDD00C37FAD /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		626BDB46235A258A00C37FAD /* HypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeButton.swift; sourceTree = "<group>"; };
+		629EFBD123466B7900D8C1CD /* CloudKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		62DBDD0F233D41AB00AB0200 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		62DBDD12233D47DA00AB0200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Hype/Views/Storyboards/Base.lproj/HypeList.storyboard; sourceTree = "<group>"; };
 		62DBDD14233D480800AB0200 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -95,8 +113,10 @@
 		625E1213233C127A0076B139 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				626BDB3F235A1F8E00C37FAD /* Fonts */,
 				625E11FF233C10690076B139 /* AppDelegate.swift */,
 				625E1201233C10690076B139 /* SceneDelegate.swift */,
+				626BDB39235A1A3C00C37FAD /* Colors.xcassets */,
 				625E1208233C106A0076B139 /* Assets.xcassets */,
 				625E120A233C106A0076B139 /* LaunchScreen.storyboard */,
 				625E120D233C106A0076B139 /* Info.plist */,
@@ -115,6 +135,9 @@
 		625E1218233C136E0076B139 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				626BDB48235A259000C37FAD /* Custom Buttons */,
+				626BDB36235A18A600C37FAD /* Custom TextFields */,
+				626BDB31235A10C200C37FAD /* Custom Labels */,
 				62DBDD21233E689200AB0200 /* Custom Cells */,
 				625E1219233C13740076B139 /* Storyboards */,
 			);
@@ -174,8 +197,44 @@
 			isa = PBXGroup;
 			children = (
 				625E1224233C143A0076B139 /* DateExtension.swift */,
+				629EFBD123466B7900D8C1CD /* CloudKitManager.swift */,
+				626BDB32235A118400C37FAD /* StyleGuide.swift */,
 			);
 			path = "Helpers+Extensions";
+			sourceTree = "<group>";
+		};
+		626BDB31235A10C200C37FAD /* Custom Labels */ = {
+			isa = PBXGroup;
+			children = (
+				626BDB2F235A10BB00C37FAD /* HypeLabel.swift */,
+			);
+			path = "Custom Labels";
+			sourceTree = "<group>";
+		};
+		626BDB36235A18A600C37FAD /* Custom TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				626BDB3B235A1D8900C37FAD /* HypeTextField.swift */,
+			);
+			path = "Custom TextFields";
+			sourceTree = "<group>";
+		};
+		626BDB3F235A1F8E00C37FAD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				626BDB3D235A1F8A00C37FAD /* Lato-Bold.ttf */,
+				626BDB42235A1FD500C37FAD /* Lato-Light.ttf */,
+				626BDB44235A1FDD00C37FAD /* Lato-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		626BDB48235A259000C37FAD /* Custom Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				626BDB46235A258A00C37FAD /* HypeButton.swift */,
+			);
+			path = "Custom Buttons";
 			sourceTree = "<group>";
 		};
 		62DBDD21233E689200AB0200 /* Custom Cells */ = {
@@ -244,11 +303,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				626BDB3E235A1F8A00C37FAD /* Lato-Bold.ttf in Resources */,
 				62DBDD13233D47DA00AB0200 /* HypeList.storyboard in Resources */,
 				62DBDD1C233E5F9400AB0200 /* PhotoPicker.storyboard in Resources */,
 				625E120C233C106A0076B139 /* LaunchScreen.storyboard in Resources */,
+				626BDB45235A1FDD00C37FAD /* Lato-Regular.ttf in Resources */,
+				626BDB3A235A1A3C00C37FAD /* Colors.xcassets in Resources */,
 				625E1209233C106A0076B139 /* Assets.xcassets in Resources */,
 				625E1207233C10690076B139 /* Main.storyboard in Resources */,
+				626BDB43235A1FD500C37FAD /* Lato-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,18 +322,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				626BDB47235A258A00C37FAD /* HypeButton.swift in Sources */,
 				62DBDD1E233E612000AB0200 /* HypePhotoViewController.swift in Sources */,
 				62DBDD17233D482C00AB0200 /* UserController.swift in Sources */,
 				625E1200233C10690076B139 /* AppDelegate.swift in Sources */,
 				625E1225233C143A0076B139 /* DateExtension.swift in Sources */,
 				62DBDD15233D480800AB0200 /* SignUpViewController.swift in Sources */,
 				625E121E233C13C00076B139 /* HypeController.swift in Sources */,
+				626BDB30235A10BB00C37FAD /* HypeLabel.swift in Sources */,
 				62DBDD19233D655E00AB0200 /* PhotoPickerViewController.swift in Sources */,
+				626BDB33235A118400C37FAD /* StyleGuide.swift in Sources */,
 				625E1223233C13F90076B139 /* HypeListViewController.swift in Sources */,
 				625E1202233C10690076B139 /* SceneDelegate.swift in Sources */,
 				625E121B233C13970076B139 /* Hype.swift in Sources */,
 				62DBDD10233D41AB00AB0200 /* User.swift in Sources */,
+				626BDB3C235A1D8900C37FAD /* HypeTextField.swift in Sources */,
 				62DBDD20233E688F00AB0200 /* HypeTableViewCell.swift in Sources */,
+				629EFBD223466B7900D8C1CD /* CloudKitManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
