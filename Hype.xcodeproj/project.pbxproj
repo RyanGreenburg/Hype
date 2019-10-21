@@ -34,6 +34,7 @@
 		62DBDD1C233E5F9400AB0200 /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62DBDD1A233E5F9400AB0200 /* PhotoPicker.storyboard */; };
 		62DBDD1E233E612000AB0200 /* HypePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD1D233E612000AB0200 /* HypePhotoViewController.swift */; };
 		62DBDD20233E688F00AB0200 /* HypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBDD1F233E688F00AB0200 /* HypeTableViewCell.swift */; };
+		62FC44B2235E643C0092D966 /* HypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FC44B1235E643C0092D966 /* HypeCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		62DBDD1B233E5F9400AB0200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Hype/Views/Storyboards/Base.lproj/PhotoPicker.storyboard; sourceTree = "<group>"; };
 		62DBDD1D233E612000AB0200 /* HypePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypePhotoViewController.swift; sourceTree = "<group>"; };
 		62DBDD1F233E688F00AB0200 /* HypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeTableViewCell.swift; sourceTree = "<group>"; };
+		62FC44B1235E643C0092D966 /* HypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				62DBDD1F233E688F00AB0200 /* HypeTableViewCell.swift */,
+				62FC44B1235E643C0092D966 /* HypeCollectionViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				626BDB33235A118400C37FAD /* StyleGuide.swift in Sources */,
 				625E1223233C13F90076B139 /* HypeListViewController.swift in Sources */,
 				625E1202233C10690076B139 /* SceneDelegate.swift in Sources */,
+				62FC44B2235E643C0092D966 /* HypeCollectionViewCell.swift in Sources */,
 				625E121B233C13970076B139 /* Hype.swift in Sources */,
 				62DBDD10233D41AB00AB0200 /* User.swift in Sources */,
 				626BDB3C235A1D8900C37FAD /* HypeTextField.swift in Sources */,

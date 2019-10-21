@@ -14,7 +14,8 @@ class HypeListViewController: UIViewController {
     var refresh: UIRefreshControl = UIRefreshControl()
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +30,16 @@ class HypeListViewController: UIViewController {
     
     // MARK: - Class Methods
     func setUpViews() {
-        tableView.dataSource = self
-        tableView.delegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
         refresh.attributedTitle = NSAttributedString(string: "Pull to see new Hypes")
         refresh.addTarget(self, action: #selector(loadData), for: .valueChanged)
-        tableView.addSubview(refresh)
+//        tableView.addSubview(refresh)
     }
     
     func updateViews() {
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
             self.refresh.endRefreshing()
         }
     }
@@ -92,43 +93,29 @@ class HypeListViewController: UIViewController {
     }
 }
 
-// MARK: - TableView DataSource/Delegate Conformance
-extension HypeListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+// MARK: - CollectionView DataSource/Delegate Conformance
+extension HypeListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return HypeController.shared.hypes.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hypeCell", for: indexPath) as? HypeCollectionViewCell
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "hypeCell", for: indexPath) as? HypeTableViewCell
         let hype = HypeController.shared.hypes[indexPath.row]
         
         cell?.hype = hype
         
-        return cell ?? UITableViewCell()
+        return cell ?? UICollectionViewCell()
     }
     
-    // MARK: - Day 2 changes
-    // Add functionality for update and delete rows. 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let hype = HypeController.shared.hypes[indexPath.row]
-        presentHypeAlert(for: hype)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let hypeToDelete = HypeController.shared.hypes[indexPath.row]
-            guard let index = HypeController.shared.hypes.firstIndex(of: hypeToDelete) else { return }
-            HypeController.shared.delete(hypeToDelete) { (success) in
-                if success {
-                    HypeController.shared.hypes.remove(at: index)
-                    DispatchQueue.main.async {
-                        tableView.deleteRows(at: [indexPath], with: .fade)
-                    }
-                }
-            }
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: self.view.frame.height / 4)
     }
 }
 
