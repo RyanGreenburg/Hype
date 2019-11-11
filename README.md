@@ -8,6 +8,12 @@ In this four day project students will learn the basics of the CloudKit framewor
 - [CKContainer](https://developer.apple.com/documentation/cloudkit/ckcontainer)
 - [CKRecord](https://developer.apple.com/documentation/cloudkit/ckrecord)
 
+### Learning Objectives: 
+- Implement CloudKit capabilities
+- Define CKContainer and the difference between the Public and Private databases
+- Define and implement CKRecord
+- Beginning understanding of NSPredicate
+
 ### Talking points before begining
 - Run the complete project (day4 branch) and talk about the daily goals. 
 - Talk about cloud service backends and thier purpose. Discuss the benefits of using CloudKit.
@@ -59,8 +65,17 @@ In this four day project students will learn the basics of the CloudKit framewor
 - [CKModifyRecordsOperation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation)
 - [CKSubscription](https://developer.apple.com/documentation/cloudkit/cksubscription)
 
+### Learning Objectives
+- Define CKModifyRecordsOperation, why we use it, and the general purposes of Operations
+- Define CKSubscription, silent vs public notifications.
+
 ### Talking points before beginning
-- Discuss goal of implementing Update and Delete for Hype objects, and also implementing CKSubscription for user notifications
+- Discuss goal of implementing Update and Delete for Hype objects using an Operation.
+  - Thread safety
+  - Quality of Service 
+  - Built in completion blocks
+- Implementing CKSubscription for user notifications
+  - Silent vs Public (registering for remote notifications)
 
 ### Starting the project
 #### CKModifyRecordsOperation
